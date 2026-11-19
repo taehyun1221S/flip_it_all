@@ -499,6 +499,7 @@ const sx = x => cam.ox + x * cam.s, sy = y => cam.oy - y * cam.s;
 const wx = px => (px - cam.ox) / cam.s, wy = py => (cam.oy - py) / cam.s;
 
 function startLevel(idx) {
+  window.GameTracker && GameTracker.milestone('스테이지 ' + (idx + 1), idx + 1);
   const L = LEVELS[idx];
   const S = makeShape(L.obj);
   cur = { idx, L, S, b: newBody(L, S), state: 'intro', throws: 0, T: 0, startTime: performance.now() };
@@ -1191,6 +1192,7 @@ $('resetSave').onclick = () => {
 function refreshTitle() { $('startBtn').textContent = save.unlocked > 1 || save.stars[0] ? '이어하기' : '시작하기'; }
 
 function startEnding() {
+  window.GameTracker && GameTracker.milestone('엔딩', 26);
   mode = 'ending'; endT = 0; showOnly('ending');
   const lines = $('endLines'); lines.innerHTML = '';
   const seq = ['지구가... 섰다.', '그런데 이 책상은...', '누구 거지?'];
@@ -1209,5 +1211,7 @@ requestAnimationFrame(frame);
 })();
 
 </script>
+<!-- 게임 분석 트래커 (game-analytics) -->
+<script src="https://sunny8197783.github.io/game-analytics/tracker/game-tracker.js" data-game="flip_it_all" data-url="https://okrgwnvlsissnenkznhf.supabase.co" data-key="sb_publishable_LiRvhvhJk1Gb0icL9RJ7vA_uO4Ckf13"></script>
 </body>
 </html>
